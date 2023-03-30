@@ -15,7 +15,6 @@ public interface IAccount<T>
     T balance { get; set; }
     T cardNumber { get; set; }
     void Withdraw(T amount);
-    void Deposit(T amount);
     void Display();
 }
 
@@ -37,11 +36,6 @@ class Account<T> : IAccount<T>
             Console.WriteLine("Insufficient funds");
     }
 
-    // Deposit method
-    public virtual void Deposit(T amount)
-    {
-        balance = (T)Convert.ChangeType(Convert.ToDouble(balance) + Convert.ToDouble(amount), typeof(T));
-    }
     // Display method
     public virtual void Display()
     {
@@ -82,7 +76,7 @@ class Program
         // Create 10 accounts and add them to the list
         for (int i = 0; i < 10; i++)
         {
-            Account<double> account = new Account<double>(1000 * (i + 1), 5234567891234567 + i);
+            Account<double> account = new Account<double>(1000000, 5234567891234567 + i);
             accounts.Add(account);
         }
 
